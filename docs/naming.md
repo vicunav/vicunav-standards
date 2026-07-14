@@ -9,16 +9,23 @@ Estas reglas aplican a todos los repositorios y paquetes del ecosistema Vicunav.
 | Repositorio o slug de paquete | `vicunav-{paquete}` | `vicunav-pagos` |
 | Identificador de código WordPress | `vicu_{entidad}` | `vicu_payment_req` |
 | Namespace PHP | `Vicu\{Paquete}` | `Vicu\Pagos` |
-| Hook | `vicu_{plugin}_{evento}` | `vicu_pagos_payment_confirmed` |
+| Hook | `vicu_{plugin}_{evento}` | `vicu_pagos_confirmado` |
 | Text domain | Igual al slug del plugin | `vicunav-pagos` |
 
 ## Repositorios y prefijo de código
 
 Los repositorios, plugins y temas usan `vicunav-` seguido de un nombre en minúsculas y `kebab-case`:
 
-- `vicunav-core`
+- `vicunav-standards`
+- `vicunav-repo-template`
+- `vicunav-hub`
+- `vicunav-theme-core`
+- `vicunav-plugin-core`
 - `vicunav-pagos`
+- `vicunav-hotel`
 - `vicunav-restaurante`
+- `vicunav-demo-hotel`
+- `vicunav-demo-restaurante`
 
 Los identificadores internos de WordPress usan el prefijo corto `vicu_`, en minúsculas y `snake_case`. No se debe usar `vicunav_` como prefijo de CPT.
 
@@ -68,16 +75,18 @@ No se usan `Vicunav` como raíz, guiones, guiones bajos ni nombres de repositori
 Todo action o filter propio usa `vicu_{plugin}_{evento}`:
 
 - `{plugin}` es el slug corto del paquete, sin `vicunav-`: `core`, `pagos`, `restaurante`.
-- `{evento}` describe el objeto y el hecho o valor en `snake_case`: `payment_confirmed`, `before_order_save`, `order_total`.
+- `{evento}` usa el estado o transición de negocio definido en el contrato: `creado`, `confirmado`, `rechazado`, `expirado`.
 - El nombre completo solo contiene minúsculas, números y guiones bajos.
 
-```php
-do_action( 'vicu_pagos_payment_confirmed', $payment_id );
+Cuando el evento refleja un estado o una transición de negocio ya definida en un contrato, se conserva su nombre en español; no se traduce a inglés.
 
-$total = apply_filters( 'vicu_restaurante_order_total', $total, $order_id );
+```php
+do_action( 'vicu_pagos_confirmado', $payment_id );
+
+do_action( 'vicu_pagos_rechazado', $payment_id );
 ```
 
-`vicu_pagos_payment_confirmed` es válido porque identifica propietario y evento. `payment_confirmed`, `vicunav_pagos_payment_confirmed` y `vicu_payment_confirmed` son inválidos porque omiten o alteran la fórmula.
+`vicu_pagos_confirmado` es válido porque identifica propietario y evento con el valor exacto del contrato. `pagos_confirmado`, `vicunav_pagos_confirmado` y `vicu_confirmado` son inválidos porque omiten o alteran la fórmula.
 
 ## Text domains
 

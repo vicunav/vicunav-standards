@@ -36,7 +36,7 @@ Toda solicitud del frontend que cree, modifique o elimine datos debe generar y v
 $nonce = sanitize_text_field( wp_unslash( $_POST['vicu_nonce'] ?? '' ) );
 
 if ( ! wp_verify_nonce( $nonce, 'vicu_update_profile' ) ) {
-	wp_die( esc_html__( 'Solicitud inválida.', 'vicunav-core' ), '', array( 'response' => 403 ) );
+	wp_die( esc_html__( 'Solicitud inválida.', 'vicunav-plugin-core' ), '', array( 'response' => 403 ) );
 }
 ```
 
@@ -50,7 +50,7 @@ Toda escritura debe comprobar la capability específica y, cuando aplique, el ID
 $post_id = absint( wp_unslash( $_POST['post_id'] ?? 0 ) );
 
 if ( ! current_user_can( 'edit_post', $post_id ) ) {
-	wp_die( esc_html__( 'No autorizado.', 'vicunav-core' ), '', array( 'response' => 403 ) );
+	wp_die( esc_html__( 'No autorizado.', 'vicunav-plugin-core' ), '', array( 'response' => 403 ) );
 }
 
 update_post_meta( $post_id, 'vicu_phone', $phone );
