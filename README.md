@@ -6,6 +6,7 @@ La documentación vive en `docs/` y debe consultarse antes de tomar decisiones t
 
 ## Contenido
 
+- [Compatibilidad](docs/compatibility.md)
 - [Seguridad](docs/security.md)
 - [Convenciones de nombres](docs/naming.md)
 - [Flujo de trabajo con Git](docs/git.md)
