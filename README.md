@@ -11,4 +11,5 @@ La documentación vive en `docs/` y debe consultarse antes de tomar decisiones t
 - [Convenciones de nombres](docs/naming.md)
 - [Flujo de trabajo con Git](docs/git.md)
 - [Accesibilidad](docs/accessibility.md)
+- [Pruebas](docs/testing.md)
 - [Licencia CC BY 4.0](LICENSE)
