@@ -1,8 +1,12 @@
 # Vicunav Standards
 
-This repository brings together the shared technical standards for the Vicunav ecosystem and serves as a common source for the other repositories through a submodule.
-It is aimed at Codex, the person responsible for the Vicunav ecosystem, and any future collaborator who designs, implements, or reviews changes.
-The documentation lives in `docs/` and should be consulted before making cross-cutting decisions.
+Canonical technical standards shared by every repository in the Vicunav ecosystem.
+Consumer repositories pin this project as the `docs/standards/` Git submodule, so each
+change is versioned and adopted deliberately.
+
+This repository owns cross-cutting rules only. Architecture and roadmap decisions live
+in [`vicunav-hub`](https://github.com/vicunav/vicunav-hub), while implementation details
+remain in the package that owns them.
 
 ## Contents
 
@@ -14,3 +18,23 @@ The documentation lives in `docs/` and should be consulted before making cross-c
 - [Testing](docs/testing.md)
 - [Documentation language](docs/documentation-language.md)
 - [CC BY 4.0 License](LICENSE)
+
+## Using the standards
+
+Initialize the submodule after cloning a consumer repository:
+
+```bash
+git submodule update --init --recursive
+```
+
+To adopt a newer standards release, update the submodule in a dedicated issue and pull
+request, review the changed rules, and validate the consumer before merging. Do not copy
+individual standards into another folder or maintain local variants.
+
+## Status
+
+The seven standards listed above are active. New rules belong here only when they apply
+across the ecosystem; repository-specific guidance belongs in that repository's
+`AGENTS.md` or `docs/` directory.
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the change workflow.
