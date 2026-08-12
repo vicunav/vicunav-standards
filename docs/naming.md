@@ -26,6 +26,7 @@ Los repositorios, plugins y temas usan `vicunav-` seguido de un nombre en minús
 - `vicunav-restaurante`
 - `vicunav-demo-hotel`
 - `vicunav-demo-restaurante`
+- `vicunav-demo-informativo`
 
 Los identificadores internos de WordPress usan el prefijo corto `vicu_`, en minúsculas y `snake_case`. No se debe usar `vicunav_` como prefijo de CPT.
 
