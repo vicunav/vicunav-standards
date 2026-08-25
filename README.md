@@ -16,6 +16,7 @@ remain in the package that owns them.
 - [Git workflow](docs/git.md)
 - [Accessibility](docs/accessibility.md)
 - [Testing](docs/testing.md)
+- [Visual fidelity](docs/visual-fidelity.md)
 - [Documentation language](docs/documentation-language.md)
 - [CC BY 4.0 License](LICENSE)
 
@@ -33,7 +34,7 @@ individual standards into another folder or maintain local variants.
 
 ## Status
 
-The seven standards listed above are active. New rules belong here only when they apply
+The eight standards listed above are active. New rules belong here only when they apply
 across the ecosystem; repository-specific guidance belongs in that repository's
 `AGENTS.md` or `docs/` directory.
 

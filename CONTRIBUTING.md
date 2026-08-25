@@ -18,6 +18,8 @@ un paquete pertenecen al repositorio propietario.
 
 - Revisa manualmente enlaces, títulos, listas, tablas y bloques de código.
 - Comprueba que los ejemplos respeten las convenciones vigentes.
+- Clasifica el impacto visual y aplica [`docs/visual-fidelity.md`](docs/visual-fidelity.md)
+  cuando el cambio altere una interfaz o un baseline.
 - Explica en el pull request qué repositorios deben actualizar su submódulo.
 - No actualices consumidores dentro del mismo commit de este repositorio.
 
