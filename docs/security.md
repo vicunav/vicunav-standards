@@ -101,6 +101,79 @@ if ( '' === $signature || ! hash_equals( $expected, $signature ) ) {
 
 Solo después de autenticar el webhook se valida su esquema, se comprueba idempotencia y se ejecutan escrituras. Nunca se registran el secreto, la firma completa ni datos sensibles del payload.
 
+## 7. Verificar mismo origen en escrituras anónimas
+
+Un nonce solo protege una sesión que ya existe. Cuando una escritura la origina un
+visitante sin cuenta ni sesión previa (crear una reserva, un pedido de invitado, un
+mensaje de contacto), no hay nonce que verificar todavía. Esa escritura debe exigir
+como mínimo que `Origin` o, en su defecto, `Referer` coincidan exactamente con el
+sitio (esquema, host y puerto) antes de ejecutar lógica de negocio. Sin esta
+verificación, cualquier sitio externo puede enviar la solicitud en nombre de un
+visitante.
+
+```php
+function vicu_request_is_same_origin( WP_REST_Request $request ): bool {
+	$source = trim( (string) $request->get_header( 'origin' ) );
+
+	if ( '' === $source ) {
+		$source = trim( (string) $request->get_header( 'referer' ) );
+	}
+
+	$source_parts = wp_parse_url( $source );
+	$home_parts   = wp_parse_url( home_url( '/' ) );
+
+	if ( ! is_array( $source_parts ) || ! is_array( $home_parts ) ) {
+		return false;
+	}
+
+	return strtolower( (string) ( $source_parts['scheme'] ?? '' ) ) === strtolower( (string) ( $home_parts['scheme'] ?? '' ) )
+		&& strtolower( (string) ( $source_parts['host'] ?? '' ) ) === strtolower( (string) ( $home_parts['host'] ?? '' ) )
+		&& ( $source_parts['port'] ?? null ) === ( $home_parts['port'] ?? null );
+}
+```
+
+Si la escritura anónima además establece una sesión propia (por ejemplo un carrito),
+la primera escritura de esa sesión se protege con el chequeo de origen, y las
+siguientes agregan un token CSRF emitido junto con la sesión. Un endpoint de solo
+lectura no requiere esta verificación.
+
+## 8. Proteger archivos PHP sueltos con un guard de acceso directo
+
+Todo archivo PHP que no sea cargado exclusivamente a través del bootstrap de
+WordPress (una clase, una plantilla, un patrón) debe rechazar la ejecución directa
+por URL:
+
+```php
+defined( 'ABSPATH' ) || exit;
+```
+
+Esta línea va inmediatamente después del docblock del archivo, antes de cualquier
+`namespace`, `use` o declaración. No sustituye ninguna otra verificación de esta
+página: es una defensa adicional para hosting que permite ejecutar PHP bajo
+`wp-content/` fuera de una petición de WordPress.
+
+## 9. Documentar el modelo de confianza de una API de proceso
+
+Un método estático público que otro plugin del ecosistema invoca directamente en el
+mismo proceso PHP (no vía REST, AJAX o un hook disparado por una solicitud externa) no
+tiene forma de verificar por sí mismo `current_user_can()` u otra autorización: no
+conoce el contexto de quien lo llama, y ese contexto puede no incluir ningún usuario
+de WordPress autenticado (un cron, un webhook ya autenticado por firma). Añadir una
+verificación de capability genérica dentro de esa API puede ser tan incorrecto como no
+verificar nada, si bloquea un llamador legítimo sin sesión de usuario.
+
+Cuando una API así no verifica autorización propia, el contrato público del paquete
+que la expone debe decir explícitamente:
+
+- Que es una API de proceso que confía en el llamador.
+- Qué debe verificar el llamador antes de invocarla (capability y nonce si el origen
+  es una acción de wp-admin; firma criptográfica si el origen es un webhook, según la
+  regla 6).
+- Qué plugin es el único consumidor conocido hoy, para poder auditarlo cuando cambie.
+
+Esto convierte una omisión silenciosa en una decisión de arquitectura explícita y
+revisable, en vez de un hallazgo repetido en cada auditoría.
+
 ## Referencias
 
 - [Seguridad en WordPress](https://developer.wordpress.org/apis/security/)
