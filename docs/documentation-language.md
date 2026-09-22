@@ -5,7 +5,7 @@ Este estándar aplica a todos los repositorios del ecosistema Vicunav y define e
 ## Regla
 
 - **README.md principal de cada repositorio público → inglés.** Es la superficie de descubrimiento: lo primero que ve alguien externo (reclutadores, colaboradores futuros, portafolio) al entrar al repositorio.
-- **AGENTS.md, Constitución del proyecto, ADRs, todo dentro de `docs/`, comentarios de código → español.** Son documentos internos de trabajo, dirigidos a Codex y al responsable del ecosistema, no a un lector externo.
+- **AGENTS.md, Constitución del proyecto, ADRs, todo dentro de `docs/`, comentarios de código → español.** Son documentos internos de trabajo, dirigidos a quien ejecute el trabajo y al responsable del ecosistema, no a un lector externo.
 
 ## Aplicación
 
