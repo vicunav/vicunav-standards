@@ -164,11 +164,10 @@ El pull request no se fusiona cuando:
 Después de publicar este estándar, cada consumidor actualiza el submódulo mediante un
 issue y un pull request propios. La adopción prioritaria corresponde a:
 
-1. `vicunav-transform-claude-to-gutenberg`;
-2. `vicunav-repo-template`;
-3. `vicunav-theme-core`;
-4. plugins y verticales con interfaz pública;
-5. repositorios de demo y el hub coordinador.
+1. `vicunav-repo-template`;
+2. `vicunav-theme-core`;
+3. plugins y verticales con interfaz pública;
+4. repositorios de demo y el hub coordinador.
 
 La actualización del submódulo no acredita por sí sola cumplimiento. Cada repositorio
 debe integrar la clasificación, evidencia y comandos aplicables a su propio flujo.
