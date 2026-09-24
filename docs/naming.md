@@ -1,30 +1,27 @@
 # Convenciones de nombres
 
-Estas reglas aplican a todos los repositorios y paquetes del ecosistema Vicunav. Los nombres nuevos deben poder deducirse de este documento sin crear convenciones locales.
+Estas reglas aplican a todos los repositorios de Vicunav. Los nombres nuevos deben poder deducirse de este documento sin crear convenciones locales.
 
 ## Referencia rápida
 
 | Elemento | Formato | Ejemplo |
 | --- | --- | --- |
-| Repositorio o slug de paquete | `vicunav-{paquete}` | `vicunav-pagos` |
+| Repositorio | `vicunav-{proyecto}` | `vicunav-restaurante` |
 | Identificador de código WordPress | `vicu_{entidad}` | `vicu_payment_req` |
-| Namespace PHP | `Vicu\{Paquete}` | `Vicu\Pagos` |
-| Hook | `vicu_{plugin}_{evento}` | `vicu_pagos_confirmado` |
-| Text domain | Igual al slug del plugin | `vicunav-pagos` |
+| Namespace PHP | `Vicu\{Proyecto}` | `Vicu\Restaurante` |
+| Hook | `vicu_{plugin}_{evento}` | `vicu_restaurante_pedido_confirmado` |
+| Text domain | Igual al slug del plugin | `vicunav-restaurante` |
 
 ## Repositorios y prefijo de código
 
-Los repositorios, plugins y temas usan `vicunav-` seguido de un nombre en minúsculas y `kebab-case`:
+Los repositorios usan `vicunav-` seguido de un nombre en minúsculas y `kebab-case`. Los plugins y temas de cada proyecto llevan el nombre que corresponda a ese proyecto, en minúsculas y `kebab-case`:
 
 - `vicunav-standards`
 - `vicunav-repo-template`
 - `vicunav-hub`
-- `vicunav-theme-core`
-- `vicunav-pagos`
-- `vicunav-hotel`
 - `vicunav-restaurante`
-- `vicunav-demo-hotel`
-- `vicunav-demo-restaurante`
+- `vicunav-bhoga-yoga`
+- `vicunav-gutenberg`
 
 Los identificadores internos de WordPress usan el prefijo corto `vicu_`, en minúsculas y `snake_case`. No se debe usar `vicunav_` como prefijo de CPT.
 
@@ -39,7 +36,7 @@ Antes de registrar un CPT se debe comprobar que:
 1. Empieza por `vicu_`.
 2. Solo contiene letras minúsculas ASCII, números y guiones bajos.
 3. Tiene 20 caracteres o menos, incluido el prefijo.
-4. No coincide con otro CPT del ecosistema ni con una clave reservada por WordPress.
+4. No coincide con otro CPT del mismo proyecto ni con una clave reservada por WordPress.
 5. Se añade a la tabla viva de este documento en el mismo cambio que lo registra.
 
 Ejemplo: para una reserva se usa `vicu_reservation`. Si el nombre supera el límite, se acorta la entidad sin eliminar `vicu_`; `vicu_restaurant_booking` se reduce a `vicu_booking`.
@@ -58,13 +55,13 @@ Esta tabla es una referencia viva, no una lista cerrada. Se actualiza cada vez q
 
 ## Namespaces PHP
 
-Todo código PHP propio usa `Vicu` como namespace raíz. El segundo segmento es el paquete en `PascalCase`; los segmentos siguientes describen la responsabilidad, también en `PascalCase`.
+Todo código PHP propio usa `Vicu` como namespace raíz. El segundo segmento es el proyecto en `PascalCase`; los segmentos siguientes describen la responsabilidad, también en `PascalCase`.
 
 ```php
-namespace Vicu\Core;
-namespace Vicu\Pagos;
-namespace Vicu\Pagos\Webhook;
+namespace Vicu\Restaurante;
 namespace Vicu\Restaurante\Orders;
+namespace Vicu\Bhoga;
+namespace Vicu\Bhoga\Content;
 ```
 
 No se usan `Vicunav` como raíz, guiones, guiones bajos ni nombres de repositorio completos dentro del namespace.
@@ -73,30 +70,29 @@ No se usan `Vicunav` como raíz, guiones, guiones bajos ni nombres de repositori
 
 Todo action o filter propio usa `vicu_{plugin}_{evento}`:
 
-- `{plugin}` es el slug corto del paquete, sin `vicunav-`: `core`, `pagos`, `restaurante`.
-- `{evento}` usa el estado o transición de negocio definido en el contrato: `creado`, `confirmado`, `rechazado`, `expirado`.
+- `{plugin}` es el slug corto del plugin, sin el prefijo `vicunav-`: `restaurante`.
+- `{evento}` usa el estado o transición de negocio definido por el proyecto: `creado`, `confirmado`, `rechazado`, `expirado`.
 - El nombre completo solo contiene minúsculas, números y guiones bajos.
 
-Cuando el evento refleja un estado o una transición de negocio ya definida en un contrato, se conserva su nombre en español; no se traduce a inglés.
+Cuando el evento refleja un estado o una transición de negocio ya definida por el proyecto, se conserva su nombre en español; no se traduce a inglés.
 
 ```php
-do_action( 'vicu_pagos_confirmado', $payment_id );
+do_action( 'vicu_restaurante_pedido_confirmado', $order_id );
 
-do_action( 'vicu_pagos_rechazado', $payment_id );
+do_action( 'vicu_restaurante_pedido_rechazado', $order_id );
 ```
 
-`vicu_pagos_confirmado` es válido porque identifica propietario y evento con el valor exacto del contrato. `pagos_confirmado`, `vicunav_pagos_confirmado` y `vicu_confirmado` son inválidos porque omiten o alteran la fórmula.
+`vicu_restaurante_pedido_confirmado` es válido porque identifica propietario y evento con la fórmula. `restaurante_pedido_confirmado`, `vicunav_restaurante_pedido_confirmado` y `vicu_pedido_confirmado` son inválidos porque omiten o alteran la fórmula.
 
 ## Text domains
 
-El text domain debe ser exactamente igual al slug del plugin o tema: minúsculas, palabras separadas por guiones y prefijo `vicunav-`.
+El text domain debe ser exactamente igual al slug del plugin o tema: minúsculas y palabras separadas por guiones (por ejemplo `vicunav-restaurante` o `bhoga-yoga-content`).
 
 ```php
-__( 'Pago recibido.', 'vicunav-pagos' );
 __( 'Pedido recibido.', 'vicunav-restaurante' );
 ```
 
-No se permiten variantes como `vicu-pagos`, `vicunav_pagos` o `VicuPagos`.
+No se permiten variantes como `vicu-restaurante`, `vicunav_restaurante` o `VicuRestaurante`.
 
 ## Referencia de WordPress
 

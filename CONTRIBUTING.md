@@ -1,6 +1,6 @@
 # Cómo contribuir
 
-Los cambios a estándares afectan potencialmente a todo el ecosistema. Cada cambio debe
+Los cambios a estándares afectan potencialmente a todos los repositorios Vicunav. Cada cambio debe
 tener un issue atómico, una rama, un pull request y un único commit final mediante
 squash-merge, según [`docs/git.md`](docs/git.md).
 
@@ -12,7 +12,7 @@ squash-merge, según [`docs/git.md`](docs/git.md).
 4. Define criterios observables para verificar la regla.
 
 Las decisiones arquitectónicas pertenecen a `vicunav-hub`; los detalles exclusivos de
-un paquete pertenecen al repositorio propietario.
+un proyecto pertenecen al repositorio propietario.
 
 ## Validación
 

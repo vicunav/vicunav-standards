@@ -1,15 +1,14 @@
 # Accesibilidad
 
-La línea base del ecosistema Vicunav es **WCAG 2.1 nivel AA**. Este checklist es un mínimo obligatorio para implementar y revisar cambios; no sustituye una auditoría de todos los criterios WCAG aplicables.
+La línea base de los proyectos Vicunav es **WCAG 2.1 nivel AA**. Este checklist es un mínimo obligatorio para implementar y revisar cambios; no sustituye una auditoría de todos los criterios WCAG aplicables.
 
 Un pull request no está listo mientras tenga un punto aplicable sin verificar.
 
 ## Alcance obligatorio
 
-- [ ] Todo patrón de interfaz de `vicunav-theme-core` cumple este checklist antes de publicarse como componente reutilizable.
-- [ ] Cada integración vuelve a probar el patrón en su contexto; heredar un componente de `vicunav-theme-core` no elimina la responsabilidad del repositorio consumidor.
-- [ ] Todo formulario de `vicunav-pagos`, incluido el checkout de pago, cumple este checklist de principio a fin.
-- [ ] Los formularios de los verticales también lo cumplen: reservas en `vicunav-hotel`, pedidos en `vicunav-restaurante` y cualquier formulario transaccional futuro.
+- [ ] Todo patrón del theme del proyecto cumple este checklist antes de publicarse como componente reutilizable.
+- [ ] Cada uso de un patrón se vuelve a probar en su contexto; reutilizar un componente del theme no elimina la responsabilidad de verificar la página que lo integra.
+- [ ] Todo formulario transaccional del plugin del proyecto (checkout, reservas, pedidos) cumple este checklist de principio a fin, y también cualquier formulario transaccional futuro.
 - [ ] Las variantes de escritorio y móvil se verifican por separado.
 
 ## Contraste
@@ -29,7 +28,7 @@ Un pull request no está listo mientras tenga un punto aplicable sin verificar.
 - [ ] `Tab` y `Shift+Tab` recorren controles en un orden lógico; `Enter`, `Space`, flechas y `Escape` funcionan según el patrón esperado.
 - [ ] Cada elemento interactivo muestra un indicador de foco visible; ningún estilo elimina el outline sin proporcionar un reemplazo perceptible.
 - [ ] El foco nunca queda atrapado. Un modal mueve el foco a su contenido, permite cerrarse con teclado y lo devuelve al control que lo abrió.
-- [ ] Menús, carruseles, acordeones, calendarios, selectores de fecha y diálogos de `vicunav-theme-core` tienen interacción completa por teclado.
+- [ ] Menús, carruseles, acordeones, calendarios, selectores de fecha y diálogos del theme del proyecto tienen interacción completa por teclado.
 - [ ] El contenido que aparece con hover también aparece al recibir foco y puede cerrarse sin usar un puntero.
 - [ ] La página ofrece un mecanismo para saltar bloques repetidos, como un enlace “Saltar al contenido”.
 
@@ -60,7 +59,7 @@ Un pull request no está listo mientras tenga un punto aplicable sin verificar.
 
 ## Formularios transaccionales
 
-Este bloque aplica obligatoriamente al checkout de `vicunav-pagos`, a las reservas de los verticales, a los pedidos y a cualquier flujo futuro que cree una obligación, cambie datos o procese dinero.
+Este bloque aplica obligatoriamente al checkout, a las reservas y a los pedidos del plugin del proyecto, y a cualquier flujo futuro que cree una obligación, cambie datos o procese dinero.
 
 - [ ] Todos los pasos, validaciones, selectores y confirmaciones se completan solo con teclado.
 - [ ] Antes de confirmar una operación financiera o modificar datos, la persona puede revisar, corregir y confirmar la información.

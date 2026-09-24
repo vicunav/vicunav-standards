@@ -1,12 +1,12 @@
 # Vicunav Standards
 
-Canonical technical standards shared by every repository in the Vicunav ecosystem.
+Canonical technical standards shared by every Vicunav repository.
 Consumer repositories pin this project as the `docs/standards/` Git submodule, so each
 change is versioned and adopted deliberately.
 
 This repository owns cross-cutting rules only. Architecture and roadmap decisions live
 in [`vicunav-hub`](https://github.com/vicunav/vicunav-hub), while implementation details
-remain in the package that owns them.
+remain in the project repository that owns them.
 
 ## Contents
 
@@ -35,7 +35,7 @@ individual standards into another folder or maintain local variants.
 ## Status
 
 The eight standards listed above are active. New rules belong here only when they apply
-across the ecosystem; repository-specific guidance belongs in that repository's
+across Vicunav repositories; repository-specific guidance belongs in that repository's
 `AGENTS.md` or `docs/` directory.
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for the change workflow.

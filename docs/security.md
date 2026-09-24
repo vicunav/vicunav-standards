@@ -1,6 +1,6 @@
 # Estándar de seguridad
 
-Estas reglas aplican a todo plugin, tema y servicio del ecosistema Vicunav. Una revisión debe bloquear cualquier cambio que incumpla una de ellas.
+Estas reglas aplican a todo plugin, tema y servicio de los proyectos Vicunav. Una revisión debe bloquear cualquier cambio que incumpla una de ellas.
 
 ## 1. Sanitizar antes de guardar
 
@@ -36,7 +36,7 @@ Toda solicitud del frontend que cree, modifique o elimine datos debe generar y v
 $nonce = sanitize_text_field( wp_unslash( $_POST['vicu_nonce'] ?? '' ) );
 
 if ( ! wp_verify_nonce( $nonce, 'vicu_update_profile' ) ) {
-	wp_die( esc_html__( 'Solicitud inválida.', 'vicunav-pagos' ), '', array( 'response' => 403 ) );
+	wp_die( esc_html__( 'Solicitud inválida.', 'vicunav-restaurante' ), '', array( 'response' => 403 ) );
 }
 ```
 
@@ -50,7 +50,7 @@ Toda escritura debe comprobar la capability específica y, cuando aplique, el ID
 $post_id = absint( wp_unslash( $_POST['post_id'] ?? 0 ) );
 
 if ( ! current_user_can( 'edit_post', $post_id ) ) {
-	wp_die( esc_html__( 'No autorizado.', 'vicunav-pagos' ), '', array( 'response' => 403 ) );
+	wp_die( esc_html__( 'No autorizado.', 'vicunav-restaurante' ), '', array( 'response' => 403 ) );
 }
 
 update_post_meta( $post_id, 'vicu_phone', $phone );
@@ -154,7 +154,7 @@ página: es una defensa adicional para hosting que permite ejecutar PHP bajo
 
 ## 9. Documentar el modelo de confianza de una API de proceso
 
-Un método estático público que otro plugin del ecosistema invoca directamente en el
+Un método estático público que otro plugin invoca directamente en el
 mismo proceso PHP (no vía REST, AJAX o un hook disparado por una solicitud externa) no
 tiene forma de verificar por sí mismo `current_user_can()` u otra autorización: no
 conoce el contexto de quien lo llama, y ese contexto puede no incluir ningún usuario
@@ -162,7 +162,7 @@ de WordPress autenticado (un cron, un webhook ya autenticado por firma). Añadir
 verificación de capability genérica dentro de esa API puede ser tan incorrecto como no
 verificar nada, si bloquea un llamador legítimo sin sesión de usuario.
 
-Cuando una API así no verifica autorización propia, el contrato público del paquete
+Cuando una API así no verifica autorización propia, la documentación del plugin
 que la expone debe decir explícitamente:
 
 - Que es una API de proceso que confía en el llamador.

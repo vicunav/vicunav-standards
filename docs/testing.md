@@ -1,6 +1,6 @@
 # Estándar de pruebas
 
-Este estándar define qué cambios del ecosistema Vicunav requieren pruebas automatizadas con PHPUnit y cuáles se validan mediante renderizado o inspección. La decisión depende del comportamiento que pueda fallar, no del tipo de archivo que contiene la implementación.
+Este estándar define qué cambios de los proyectos Vicunav requieren pruebas automatizadas con PHPUnit y cuáles se validan mediante renderizado o inspección. La decisión depende del comportamiento que pueda fallar, no del tipo de archivo que contiene la implementación.
 
 ## Código que requiere PHPUnit
 

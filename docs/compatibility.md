@@ -1,6 +1,6 @@
 # Compatibilidad
 
-Todo plugin y tema del ecosistema Vicunav debe admitir como mínimo **PHP 8.1** y **WordPress 6.6**. El CI valida contra una versión reciente (PHP 8.4), pero esa versión de validación no eleva el mínimo compatible.
+Todo plugin y tema de los proyectos Vicunav debe admitir como mínimo **PHP 8.1** y **WordPress 6.6**. El CI valida contra una versión reciente (PHP 8.4), pero esa versión de validación no eleva el mínimo compatible.
 
 ## Verificación
 

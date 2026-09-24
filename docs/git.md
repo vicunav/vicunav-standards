@@ -1,6 +1,6 @@
 # Flujo de trabajo con Git
 
-Este estándar aplica a todos los repositorios del ecosistema Vicunav. Cada cambio debe ser rastreable desde un issue hasta un único commit final en `main`.
+Este estándar aplica a todos los repositorios Vicunav. Cada cambio debe ser rastreable desde un issue hasta un único commit final en `main`.
 
 ## Flujo obligatorio
 
@@ -37,7 +37,7 @@ Ejemplos inválidos:
 feature/CPT_FAQ          # Tipo no aprobado, falta issue y no usa kebab-case.
 feat/cpt-faq             # Falta el número del issue.
 feat/12_cpt_faq          # El slug no usa kebab-case.
-feat/12-faq-y-18-pagos   # Mezcla dos issues.
+feat/12-faq-y-18-checkout   # Mezcla dos issues.
 ```
 
 ## Commits convencionales
@@ -64,7 +64,7 @@ Tipos aprobados:
 | `style` | Formato sin cambio de comportamiento. |
 | `revert` | Reversión explícita de otro commit. |
 
-El scope es opcional y nombra un paquete o área concreta, por ejemplo `pagos`, `hotel` o `restaurante`. Un cambio incompatible añade `!` antes de `:` y explica la ruptura en el cuerpo o en un footer `BREAKING CHANGE:`.
+El scope es opcional y nombra un área concreta del proyecto, por ejemplo `restaurante`, `theme` o `plugin`. Un cambio incompatible añade `!` antes de `:` y explica la ruptura en el cuerpo o en un footer `BREAKING CHANGE:`.
 
 ### Mensajes válidos
 
@@ -73,7 +73,7 @@ feat: register FAQ post type
 fix: reject duplicate webhook notifications
 docs: define repository naming conventions
 refactor(restaurante): extract order status service
-feat(hotel)!: replace reservation status contract
+feat(plugin)!: replace reservation status values
 ```
 
 ### Mensajes inválidos
@@ -85,10 +85,10 @@ Add FAQ post type
 feature: register FAQ post type
 # `feature` no es un tipo aprobado; corresponde `feat`.
 
-fix pagos webhook
+fix restaurante webhook
 # No cumple la estructura `tipo: descripción`.
 
-feat: register FAQ post type and redesign payment checkout
+feat: register FAQ post type and redesign checkout
 # Mezcla alcances que deben pertenecer a issues distintos.
 ```
 

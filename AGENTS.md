@@ -1,12 +1,11 @@
 # vicunav-standards
 
-Propósito: Fuente normativa de las reglas técnicas compartidas del ecosistema Vicunav.
+Propósito: Fuente normativa de las reglas técnicas compartidas de los repositorios Vicunav.
 
 ## Alcance
 
 Este repositorio contiene únicamente estándares transversales. No documentes aquí
-arquitectura de un paquete, backlog, contratos propietarios ni decisiones exclusivas de
-un repositorio.
+arquitectura de un proyecto, backlog ni decisiones exclusivas de un repositorio.
 
 Los README públicos se escriben en inglés. Los archivos de `docs/`, este `AGENTS.md` y
 los comentarios se escriben en español según `docs/documentation-language.md`.

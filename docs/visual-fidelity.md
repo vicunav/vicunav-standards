@@ -1,8 +1,8 @@
 # Fidelidad visual
 
 Este estándar aplica a cualquier repositorio Vicunav que cree o modifique una
-interfaz, transforme un diseño aprobado o consuma presentación producida por otro
-paquete. La fidelidad visual es una dimensión independiente de la funcionalidad, la
+interfaz, transforme un diseño aprobado o consuma presentación producida por otra
+parte del mismo proyecto. La fidelidad visual es una dimensión independiente de la funcionalidad, la
 accesibilidad, la estructura y el rendimiento.
 
 Un pull request con impacto visual no está listo mientras carezca de baseline,
@@ -115,13 +115,16 @@ Una prueba que solo consulta el archivo o el registro persistido es insuficiente
 - Un plugin con interfaz posee markup semántico, comportamiento, composición intrínseca y
   representación de estados funcionales. Consume presets públicos y fallbacks
   neutrales; no incorpora valores de una marca particular.
-- El repositorio de demo posee copy, media, composición y selección de identidad de su
-  marca. No duplica lógica reusable.
-- El repositorio que descubre un defecto fuera de su propiedad crea un issue atómico
-  en el propietario y espera su versión antes de aprobar la integración.
+- El contenido del proyecto posee copy, media, composición y selección de identidad de su
+  marca. No duplica lógica reusable del theme ni del plugin.
+- Un solo repositorio posee el theme, el plugin y el contenido del proyecto; la
+  propiedad se respeta por carpeta (`theme/`, `plugin/`, contenido) dentro de él.
+- Quien descubre un defecto fuera de la carpeta o repositorio propietario crea un issue
+  atómico para el propietario y espera su corrección antes de aprobar la integración.
 
-No se copian estilos entre repositorios para acelerar una captura ni se promueve una
-geometría específica del demo a un theme compartido sin reutilización demostrada.
+No se copian estilos entre repositorios ni entre theme y plugin para acelerar una
+captura, ni se promueve una geometría específica de una página al theme sin
+reutilización demostrada.
 
 ## Separar gates
 
@@ -165,9 +168,9 @@ Después de publicar este estándar, cada consumidor actualiza el submódulo med
 issue y un pull request propios. La adopción prioritaria corresponde a:
 
 1. `vicunav-repo-template`;
-2. `vicunav-theme-core`;
-3. plugins y verticales con interfaz pública;
-4. repositorios de demo y el hub coordinador.
+2. `vicunav-restaurante`;
+3. `vicunav-bhoga-yoga`;
+4. `vicunav-hub`.
 
 La actualización del submódulo no acredita por sí sola cumplimiento. Cada repositorio
 debe integrar la clasificación, evidencia y comandos aplicables a su propio flujo.
