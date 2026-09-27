@@ -20,7 +20,6 @@ Los repositorios usan `vicunav-` seguido de un nombre en minúsculas y `kebab-ca
 - `vicunav-repo-template`
 - `vicunav-hub`
 - `vicunav-restaurante`
-- `vicunav-bhoga-yoga`
 - `vicunav-gutenberg`
 
 Los identificadores internos de WordPress usan el prefijo corto `vicu_`, en minúsculas y `snake_case`. No se debe usar `vicunav_` como prefijo de CPT.
@@ -60,8 +59,7 @@ Todo código PHP propio usa `Vicu` como namespace raíz. El segundo segmento es 
 ```php
 namespace Vicu\Restaurante;
 namespace Vicu\Restaurante\Orders;
-namespace Vicu\Bhoga;
-namespace Vicu\Bhoga\Content;
+namespace Vicu\Restaurante\Payments;
 ```
 
 No se usan `Vicunav` como raíz, guiones, guiones bajos ni nombres de repositorio completos dentro del namespace.
@@ -86,7 +84,7 @@ do_action( 'vicu_restaurante_pedido_rechazado', $order_id );
 
 ## Text domains
 
-El text domain debe ser exactamente igual al slug del plugin o tema: minúsculas y palabras separadas por guiones (por ejemplo `vicunav-restaurante` o `bhoga-yoga-content`).
+El text domain debe ser exactamente igual al slug del plugin o tema: minúsculas y palabras separadas por guiones (por ejemplo `vicunav-restaurante`).
 
 ```php
 __( 'Pedido recibido.', 'vicunav-restaurante' );

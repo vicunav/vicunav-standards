@@ -169,8 +169,7 @@ issue y un pull request propios. La adopción prioritaria corresponde a:
 
 1. `vicunav-repo-template`;
 2. `vicunav-restaurante`;
-3. `vicunav-bhoga-yoga`;
-4. `vicunav-hub`.
+3. `vicunav-hub`.
 
 La actualización del submódulo no acredita por sí sola cumplimiento. Cada repositorio
 debe integrar la clasificación, evidencia y comandos aplicables a su propio flujo.
